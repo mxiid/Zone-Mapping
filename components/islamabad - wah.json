@@ -1,0 +1,496 @@
+{
+    "Wah Cantt": {
+        "Islamabad - B - 17": [
+            "Sector B-17"
+        ],
+        "Islamabad - D - 17": [
+            "Sarai Kharbuza",
+            "Sector D-17"
+        ],
+        "Wah Cantt": [
+            "Bani Mohalla",
+            "Phase 3",
+            "Sector 21 - E",
+            "Sector 22 - G",
+            "Kohistan Enclave",
+            "Iqbal Town",
+            "1 F",
+            "Minar Road",
+            "Mohabtabad",
+            "Nawababad",
+            "Wah Model Town",
+            "Jamilabad",
+            "Ghazi Pur Colony",
+            "New City Wah Cantt",
+            "Gulshan-e-Raza",
+            "Benazir Colony",
+            "Shah Wali Colony",
+            "25 Area",
+            "Sector 23 G",
+            "Officers Colony",
+            "Dhoke Barda",
+            "Gulshan-e-Anwar",
+            "Gulistan Colony",
+            "Kohsar Colony",
+            "Sector 21 F",
+            "Aslam Market",
+            "Sector 20",
+            "Ghouri Town",
+            "Phase 1 - Extension",
+            "Phase 4",
+            "Malikabad",
+            "Sadat Colony",
+            "Jinnah Colony",
+            "Qabristan Road",
+            "Chairman Colony",
+            "Sector 22 F",
+            "Asifabad",
+            "POF Officers Colony",
+            "Hassan Colony",
+            "Lohsar Sharfoo",
+            "Sarai Khola",
+            "Lalazar Colony",
+            "New Gulistan Colony",
+            "Pind Gondal",
+            "Gadwal Road",
+            "Liaq Ali Chowk",
+            "Lalarukh Colony",
+            "Basti Market",
+            "Iqbal Road",
+            "Barrier No 3",
+            "Post Office Road"
+        ]
+    },
+    "Islamabad": {
+        "Islamabad - Bahria Enclave": [
+            "Sector H",
+            "Sector I"
+        ],
+        "Islamabad - Bahria Town": [
+            "Phase 1",
+            "Phase 2",
+            "Phase 3",
+            "Phase 4",
+            "Phase 5",
+            "Phase 6",
+            "Phase 7",
+            "Phase 8"
+        ],
+        "Islamabad - D - 13": [
+            "Sector D-13"
+        ],
+        "Islamabad - DHA": [
+            "Phase 1",
+            "Phase 2",
+            "Phase 3",
+            "Phase 5"
+        ],
+        "Islamabad - E - 18": [
+            "Sector E-18"
+        ],
+        "Islamabad - F - 17": [
+            "Sector F-17"
+        ],
+        "Islamabad - F - 7": [
+            "Said Pur Village",
+            "Sector 4",
+            "Sector 1",
+            "Sector 3",
+            "Markaz",
+            "Sector 2"
+        ],
+        "Islamabad - H - 15": [
+            "Sector H-15"
+        ],
+        "Islamabad - H -13": [
+            "Ali Bakhish Town",
+            "Gulzaar E Madina Town",
+            "Shams Colony",
+            "Quaid E Azam Hospital",
+            "Khayam Town",
+            "Hashmi Town",
+            "Abu Bakar Block",
+            "Ali Block",
+            "Paris City - Block H",
+            "Usman Block",
+            "Suleman Town",
+            "Paris City - Block E",
+            "Hamza Block",
+            "Paris City - Block F",
+            "Umer Block",
+            "Muhammadi Block",
+            "Abdullah Garden",
+            "Khayaban E Faiz",
+            "Capital Homes - Colony"
+        ],
+        "Islamabad - I - 16": [
+            "Sector I - 16"
+        ],
+        "Islamabad - Jhangi Syedian": [
+            "Chongi 26",
+            "Islamabad International Airport",
+            "Jhangi Syedian",
+            "Muhammadi Town"
+        ],
+        "Islamabad - D - 12": [
+            "Sector 4",
+            "Markaz",
+            "Sector 3",
+            "Sector 1",
+            "Sector 2"
+        ],
+        "Islamabad - Ali Pur": [
+            "Kirpa Road",
+            "Nilor",
+            "Panjgran",
+            "Arslan Town",
+            "Old Radio Pakistan",
+            "Dhoke Jabi",
+            "Farash Town",
+            "Jung Sayedan",
+            "Shaheen Town",
+            "Thanda Pani",
+            "Satra Meel",
+            "Ali Akbar Town",
+            "Sultana Foundation",
+            "Chirah",
+            "Irfan Abad",
+            "Phulgran",
+            "Balti Colony",
+            "Hamdani Town"
+        ],
+        "Islamabad - F - 6": [
+            "Sector 4",
+            "Sector 2",
+            "Sector 1",
+            "Markaz",
+            "Sector 3"
+        ],
+        "Islamabad - Bhara Kahu": [
+            "Kiani Road",
+            "Madina Town",
+            "PTV Colony",
+            "Kot Hathyal",
+            "Jillani Town",
+            "Colonel Aman Ullah Road",
+            "Nai Abadi",
+            "Sehri Chowk",
+            "Margallah Valley",
+            "Mungo Town",
+            "Ahmad Town",
+            "17 Mile",
+            "Mohalla Syadan",
+            "University Town",
+            "Muslim Town",
+            "Belgium Town",
+            "Ameen Abbasi Town",
+            "Dhoke Mohri",
+            "Company Road",
+            "Ali Town Kundi",
+            "Prince Road",
+            "Usman Abad",
+            "Abdullah Town",
+            "Shahpur",
+            "Azmat Town"
+        ],
+        "Islamabad - Rawal Town": [
+            "NARC Colony",
+            "Orchard Scheme",
+            "Margalla Town"
+        ],
+        "Islamabad - E - 7": [
+            "Sector 1",
+            "Sector 2",
+            "Sector 3",
+            "Markaz",
+            "Sector 4"
+        ],
+        "Islamabad - Banni Gaala": [
+            "Hill View Road",
+            "Imran Khan Road",
+            "Pakistan Colony",
+            "Green Valley Society Islamabad",
+            "Qasim Avenue",
+            "Hussain Road",
+            "Akram Road",
+            "Muzaffar Khan Road",
+            "Ghaus Al Azam Road",
+            "River Side Enclave",
+            "Dr. AQ Khan School Road",
+            "Imran Khan Chowk",
+            "Raja Ashraf Road",
+            "Abbasi Road Street 14-B",
+            "Lake View Lanes Colony",
+            "Korang Road",
+            "North Banni Galla",
+            "Lakhwal",
+            "Khyber City Town"
+        ],
+        "Islamabad - E - 8": [
+            "Sector 2",
+            "Sector 1"
+        ],
+        "Islamabad - I - 10": [
+            "Sector 4",
+            "Sector 1",
+            "Sector 3",
+            "Markaz",
+            "Sector 2"
+        ],
+        "Islamabad - I - 12": [
+            "Markaz",
+            "Sector 3",
+            "Sector 1",
+            "Sector 4",
+            "Sector 2"
+        ],
+        "Islamabad - F - 10": [
+            "Markaz",
+            "Sector 1",
+            "Sector 2",
+            "Sector 4",
+            "Sector 3"
+        ],
+        "Islamabad - H - 12": [
+            "Markaz",
+            "Sector 1",
+            "Sector 3",
+            "Sector 4",
+            "Sector 2"
+        ],
+        "Islamabad - G - 10": [
+            "Sector 1",
+            "Sector 3",
+            "Sector 4",
+            "Sector 2",
+            "Markaz"
+        ],
+        "Islamabad - H - 11": [
+            "Sector 4",
+            "Sector 3",
+            "Sector 2",
+            "Sector 1",
+            "Markaz"
+        ],
+        "Islamabad - G - 13": [
+            "Sector 2",
+            "Sector 3",
+            "Sector 4",
+            "Markaz",
+            "Sector 1"
+        ],
+        "Islamabad - Sohan": [
+            "Awaan Town",
+            "Razaq Valley Road",
+            "Nawab Town",
+            "Azhar Town",
+            "Laal Market",
+            "Ashraf Town",
+            "Malik Tahir Town",
+            "Sohan",
+            "Abbasi Road",
+            "Al-Hajh Hukamdad Road",
+            "Al Qaim Town",
+            "Madni Town",
+            "Burma"
+        ],
+        "Islamabad - I - 11": [
+            "Sector 4",
+            "NESCOM",
+            "Sabzi Mandi",
+            "Sector 3",
+            "Sector 2",
+            "Sector 1"
+        ],
+        "Islamabad - E - 11": [
+            "Golra Sharif",
+            "Mehran Complex",
+            "Sector 2",
+            "Sector 4",
+            "Sector 1",
+            "Al Mehar Colony"
+        ],
+        "Islamabad - Tarlai Kalan": [
+            "Sarfraz Town",
+            "Gulshan-E-Tarlai",
+            "Gulberg Town",
+            "Talai Kalan",
+            "Sher Ali Town",
+            "Taramri",
+            "Irfanabad Town",
+            "Jagiot Road",
+            "Mehrban Town",
+            "Ghazi Shah Imam Road"
+        ],
+        "Islamabad - Ghauri Town": [
+            "Ghauri Town - Phase 4",
+            "Ghauri Town - Phase 3",
+            "Marwa Town",
+            "Sanam Chowk",
+            "Shareef Abad",
+            "Ghouri Garden",
+            "Kalma Chowk",
+            "Ghauri Town - Phase 7",
+            "Dhoke Gangal",
+            "Madina Town",
+            "Ghauri Town - Phase 2",
+            "Koral Chowk",
+            "Ghauri Town - Phase 1",
+            "Ghauri Town - Phase 5"
+        ],
+        "Islamabad - I - 8": [
+            "Sector 3",
+            "Sector 2",
+            "Markaz",
+            "Sector 4",
+            "Sector 1"
+        ],
+        "Islamabad - G - 12": [
+            "Markaz",
+            "Sector 4",
+            "Sector 2",
+            "Sector 3",
+            "Sector 1"
+        ],
+        "Islamabad - Chatta Bakhtawar": [
+            "Green Avenue - Phase 1",
+            "Park View",
+            "Kurri Road",
+            "Green Avenue - Phase 2",
+            "Hostel City",
+            "New Chatta Bakhtawar",
+            "Mohra Noor",
+            "Junaid Mughal Town",
+            "Park Enclave",
+            "Chatta Road"
+        ],
+        "Islamabad - G - 15": [
+            "Markaz",
+            "Sector 2",
+            "Sector 1",
+            "Sector 4",
+            "Sector 3"
+        ],
+        "Islamabad - G - 7": [
+            "Sector 4",
+            "Sector 2",
+            "Markaz",
+            "Sector 1",
+            "Sector 3"
+        ],
+        "Islamabad - E - 9": [
+            "Sector 4",
+            "Sector 1",
+            "Sector 3",
+            "Sector 2"
+        ],
+        "Islamabad - I - 9": [
+            "Sector 1",
+            "Sector 4",
+            "Sector 3",
+            "Sector 2",
+            "Markaz"
+        ],
+        "Islamabad - G - 8": [
+            "Sector 4",
+            "Sector 1",
+            "Sector 2",
+            "Markaz",
+            "Sector 3"
+        ],
+        "Islamabad - Chak Shahzad": [
+            "Chak Shehzad Farms",
+            "Gulshan - E - Alhuda",
+            "Shahzad Town",
+            "COMSATS University",
+            "Jinnah Complex",
+            "NIH Hospital"
+        ],
+        "Islamabad - G - 5": [
+            "Sector 3",
+            "Sector 4",
+            "Sector 2",
+            "Sector 1",
+            "Markaz"
+        ],
+        "Islamabad - G - 11": [
+            "Sector 4",
+            "Markaz",
+            "Sector 1",
+            "Sector 2",
+            "Sector 3"
+        ],
+        "Islamabad - F - 9": [
+            "Islamabad - F - 9"
+        ],
+        "Islamabad - I - 14": [
+            "Sector 3",
+            "Markaz",
+            "Sector 4",
+            "Sector 1",
+            "Sector 2"
+        ],
+        "Islamabad - H - 10": [
+            "Sector 1",
+            "Sector 4",
+            "Sector 2",
+            "Sector 3",
+            "Markaz"
+        ],
+        "Islamabad - G - 6": [
+            "Sector 4",
+            "Sector 1",
+            "Markaz",
+            "Sector 2",
+            "Sector 3"
+        ],
+        "Islamabad - F - 11": [
+            "Sector 4",
+            "Sector 3",
+            "Sector 2",
+            "Markaz",
+            "Sector 1"
+        ],
+        "Islamabad - G - 9": [
+            "Sector 3",
+            "Sector 1",
+            "Markaz",
+            "Sector 4",
+            "Sector 2"
+        ],
+        "Islamabad - G - 14": [
+            "Sector 4",
+            "Sector 1",
+            "Sector 2",
+            "Sector 3"
+        ],
+        "Islamabad - E - 10": [
+            "Sector 1"
+        ],
+        "Islamabad - H - 9": [
+            "Markaz",
+            "Sector 1",
+            "Sector 2",
+            "Sector 4",
+            "Sector 3"
+        ],
+        "Islamabad - F - 8": [
+            "Sector 1",
+            "Sector 2",
+            "Markaz",
+            "Sector 4",
+            "Sector 3"
+        ],
+        "Islamabad - H - 8": [
+            "Sector 1",
+            "Sector 2",
+            "Sector 4",
+            "Markaz",
+            "Sector 3"
+        ],
+        "Islamabad - F - 5": [
+            "Sector 2",
+            "Sector 1"
+        ]
+    }
+}

@@ -1,0 +1,775 @@
+{
+    "Karachi": {
+        "Karachi - Baldia Town": [
+            "Musharraf Colony",
+            "Sector 2",
+            "Yousuf Goth",
+            "Baldiya Town",
+            "Mawach Goth",
+            "Abidabad",
+            "Sector 4",
+            "Saeedabad",
+            "Gulshan Ghazi",
+            "Rasheedabad",
+            "Sector 1",
+            "Saeedullah Goth",
+            "Dawood Goth",
+            "Sector 3"
+        ],
+        "Karachi - Clifton": [
+            "Delhi Colony",
+            "Block 6",
+            "Block 9",
+            "Block 2",
+            "Block 7",
+            "Block 3",
+            "Block 4",
+            "Block 1",
+            "Block 5",
+            "Block 8",
+            "Kehkashan"
+        ],
+        "Karachi - DHA": [
+            "Gizri",
+            "Phase 2 Ext",
+            "Phase 7 Ext",
+            "Phase 3",
+            "Phase 2",
+            "Phase 9",
+            "Phase 8",
+            "Phase 1",
+            "Phase 5",
+            "Phase 6",
+            "Phase 4",
+            "Phase 7"
+        ],
+        "Karachi - F.B Area": [
+            "Ayesha Manzil",
+            "B Area",
+            "Azizabad",
+            "Block 17",
+            "Block 2",
+            "Karimabad",
+            "Block 3",
+            "Block 11",
+            "Block 22",
+            "Block 7",
+            "Block 15",
+            "Hussainabad",
+            "Block 16",
+            "Block 10",
+            "B1 Area",
+            "Block 8",
+            "Block 12",
+            "Block 13",
+            "Block 20",
+            "Block 19",
+            "Block 4",
+            "Block 18",
+            "Block 21",
+            "Block 9",
+            "Block 1",
+            "Block 5",
+            "Block 14",
+            "Block 6"
+        ],
+        "Karachi - Gulistan-e-Johar": [
+            "Pehlwan Goth",
+            "Block 14",
+            "Block 7",
+            "Block 6",
+            "Block 2",
+            "Block 13",
+            "Block 15",
+            "Block 19",
+            "Block 11",
+            "Block 10",
+            "Block 4",
+            "Block 12",
+            "Block 8",
+            "Block 16",
+            "Block 17",
+            "Block 9",
+            "Block 3",
+            "Block 20",
+            "Block 18",
+            "Block 5",
+            "Block 1"
+        ],
+        "Karachi - Gulshan-e-Iqbal": [
+            "Block 10 A",
+            "Block 4 A",
+            "Haji Lemo Goth",
+            "Kachi Mohalla 1",
+            "Karachi Memon Chs",
+            "Bahadur Yar Jung Society",
+            "Civic Center",
+            "Block 5",
+            "Block 18",
+            "Block 12",
+            "Ayesha Manzil",
+            "Lines Area",
+            "Block 4",
+            "Block 15",
+            "Block 17",
+            "K.D.A Scheme 1",
+            "Block 2",
+            "Block 16",
+            "Block 7",
+            "Adamjee Nagar",
+            "Block 8",
+            "Block 3",
+            "Block 9",
+            "Block 10",
+            "Block 6",
+            "Mohammad Ali Housing Society",
+            "Gulshan-E-Jamal",
+            "Hasan Square",
+            "Block 1",
+            "Dhoraji",
+            "Block 13",
+            "Bahadurabad",
+            "Block 14",
+            "Block 11",
+            "Block 19"
+        ],
+        "Karachi - Gulshan-e-Maymar": [
+            "Sector P",
+            "Sector Q",
+            "Sector R",
+            "Sector R I",
+            "Sector R III",
+            "Sector T - 1",
+            "Sector T - 3",
+            "Sector U",
+            "Sector V4",
+            "Sector W - 1",
+            "Sector W - 2",
+            "Sector W - 3",
+            "Sector W - 4",
+            "Sector Y",
+            "Sector Y - 2",
+            "Sector Y-1",
+            "Sector Z - 5",
+            "Sector Z - 6",
+            "Sector Z - A",
+            "Gulshan-e-Maymar",
+            "Ahsanabad"
+        ],
+        "Karachi - Korangi": [
+            "Mehran Town",
+            "Sector 10",
+            "Sector 9",
+            "Korangi Industrial Area",
+            "Zia Colony",
+            "Abdullah Shah Noorani Pahari Colony",
+            "Zaman Town",
+            "PAF Base Korangi Creek",
+            "Nasir Colony"
+        ],
+        "Karachi - Landhi": [
+            "Khurramabad",
+            "Quaidabad",
+            "Ilyas Goth",
+            "Bagh-e-Korangi",
+            "Sadat Colony",
+            "Qasim Town",
+            "Sharafi Goth",
+            "Landhi Industrial Area",
+            "Shah Khalid Colony",
+            "Awami Colony",
+            "Bhutto Nagar",
+            "Labour Colony",
+            "Alflah Housing Society",
+            "Muzaffarabad Colony",
+            "Gulshan-e-Rafi",
+            "Bakhtawar Goth",
+            "Muslimabad Colony",
+            "Punjab Town",
+            "Barmi Colony",
+            "Zamanabad",
+            "Future Colony"
+        ],
+        "Karachi - Manghopir": [
+            "Gulzarabad Colony",
+            "Haji Fazal Town",
+            "New Mianwali Colony",
+            "Pukhtun Abad"
+        ],
+        "Karachi - New Karachi": [
+            "Madina Colony",
+            "Murree Goth",
+            "Sector 2",
+            "Sector 5 - E",
+            "Sector 5 - F",
+            "Sector 5 - M",
+            "Sector 6",
+            "Sector B - 1",
+            "Sector B - 3",
+            "New Karachi"
+        ],
+        "Karachi - Orangi Town": [
+            "Baba Wilayat Shah Colony",
+            "Baloch Goth",
+            "Chishti Nagar",
+            "Faqir Colony",
+            "Fareed Colony",
+            "Ghaziabad",
+            "Gulshan-e-Zia",
+            "Hanifabad",
+            "Islamia Colony",
+            "Qasba Colony",
+            "Raees Amrohi Colony",
+            "Rahim Shah Colony",
+            "Banaras Town",
+            "Katti Pahari",
+            "Sector 14 - C",
+            "Thorani Goth",
+            "Orangi",
+            "Sector 14 - A",
+            "Moria Goth Orangi",
+            "Bangla Bazaar",
+            "Bilal Colony",
+            "Manghopir"
+        ],
+        "Karachi - Saddar": [
+            "Ghazdarabad",
+            "Soldier Bazar",
+            "Napier Quarters",
+            "Jodia Bazar",
+            "Saddar",
+            "Empress Market"
+        ],
+        "Karachi - Shah Faisal Colony": [
+            "Al Haider Society",
+            "Alflah Housing Society",
+            "Azeem Pura",
+            "Gohar Green City",
+            "Golden Town",
+            "Green Town",
+            "Gulshan-e-Rafi",
+            "Natha Khan Goth",
+            "New Iqbalabad",
+            "Punjab Town",
+            "Rafah-e-Aam Society",
+            "Reta Plot",
+            "Sadat Colony",
+            "Shah Faisal Colony 2",
+            "Shamsi Society",
+            "Shah Faisal Colony 3",
+            "Shah Faisal Colony 1",
+            "Shah Faisal Colony 5",
+            "Gulshan-e-Asghar",
+            "Aswan Town",
+            "Shah Faisal Colony 4"
+        ],
+        "Karachi - Cantonment Shahra-e-Faisal": [
+            "Mehran Hotel",
+            "Caesar Tower",
+            "Aisha bawany",
+            "Kashif Centre"
+        ],
+        "Karachi - North Karachi": [
+            "Sector 11 - K",
+            "Sector 5 - M",
+            "Sector 11 - B",
+            "Sector 5 - K",
+            "Sector 5 - C 1",
+            "Sector 8",
+            "Sector 5 - B 2",
+            "Sector 4",
+            "Sector 5 - J",
+            "Sector 5 - I",
+            "Sector 5 - B 4",
+            "Sector 11 - C 1",
+            "Sector 6",
+            "Sector 5 - B 3",
+            "Sector 11 - A",
+            "Sector 11 - L",
+            "Sector 7 - D 2",
+            "Sector 5 - C 2",
+            "Sector 7 - D 1",
+            "Sector 11 - H",
+            "Sector 5 - A 4",
+            "Sector 9",
+            "Sector 11 - I",
+            "Sector 5 - A 1",
+            "Sector 5 - A 3",
+            "Sector 11 - E",
+            "Sector 10",
+            "Sector 5 - C 4",
+            "Sector 7 - D 3",
+            "Sector 5 - B 1",
+            "Sector 5 - C 3",
+            "Sector 2",
+            "Sector 7 - D 4",
+            "Sector 11 - C 2",
+            "Sector 3",
+            "Sector 5 - A 2",
+            "Sector 11 - C 3",
+            "Sector 5 - L"
+        ],
+        "Karachi - Cantonment C.O.D": [
+            "COD"
+        ],
+        "Karachi - Jamshed Road": [
+            "Shikarpur Colony",
+            "Jamshed Road",
+            "Hyderabad Colony",
+            "Bihar Colony"
+        ],
+        "Karachi - Hawksbay": [
+            "Javaid Bharia",
+            "Hawksbay",
+            "Musharaf Colony"
+        ],
+        "Karachi - Old Town": [
+            "Ranchorline",
+            "Jodia Bazar",
+            "Khada Market",
+            "Kakri Ground",
+            "Bohra Pir",
+            "Lee Market",
+            "Kharadar",
+            "Kagzi Bazar",
+            "Nishter Road",
+            "Bhimpora",
+            "Pan Mandi",
+            "Ramswami",
+            "Bombay Bazar",
+            "Mithadar",
+            "Nanak Wara",
+            "Kamil Gali"
+        ],
+        "Karachi - Scheme 33": [
+            "Jahangir Town",
+            "Income Tax Employees Co-Operative Housing Society",
+            "PCSIR Society",
+            "Karachi Bar Association Co-Operative Housing Society",
+            "Raza Raheem City",
+            "Marora Goth",
+            "New Sabzi Mandi",
+            "Delhi Raiyan Cooperative Housing Society",
+            "State Bank Society",
+            "Mosamiyat",
+            "Safoorah Chowrangi",
+            "SUPARCO",
+            "Sunlay Cottages",
+            "Al Ashraf Society",
+            "Kaneez Fatima Society",
+            "Sachal Sarmast Society",
+            "Malik Society",
+            "Ghazi Goth",
+            "Hakeem Villas",
+            "Madras Cooperative Housing Society",
+            "Scheme 33",
+            "Makhdoom Bilawal Society",
+            "Gulshan E Arisha Co-Operative Housing Society",
+            "Syed Village",
+            "Al Hira Society",
+            "Pakistan Scientists Cooperative Housing Society",
+            "KESC Society",
+            "Muslim Society",
+            "Amroha Society",
+            "Saadi Town",
+            "Sachal Goth",
+            "Rok Cooperative Housing Society",
+            "Falcon Housing Scheme",
+            "Mehran Bungalows",
+            "Capital Cooperative Housing Society",
+            "Corniche Cooperative Housing Society",
+            "Gulshan-E-Umaair",
+            "Teacher's Society",
+            "New Rizvia Society",
+            "Incholi Cooperative Housing Society"
+        ],
+        "Karachi - M.A Jinnah Road": [
+            "Bolton Market",
+            "Radio Pakistan",
+            "Light House",
+            "M.A Jinnah Road",
+            "City Court",
+            "Denso Hall",
+            "Numaish",
+            "Tibet Centre",
+            "Jama Cloth Market"
+        ],
+        "Karachi - Liaquatabad": [
+            "Qasimabad",
+            "Block 4",
+            "Block 10",
+            "Block 6",
+            "Block 7",
+            "Block 1",
+            "Block 2",
+            "Block 9",
+            "B - 1 Area",
+            "C - 1 Area",
+            "Bantwa Nagar",
+            "Qureshi Colony",
+            "Gharibabad",
+            "C - Area",
+            "B - Area",
+            "Block 5",
+            "Block 8",
+            "Block 3"
+        ],
+        "Karachi - Malir": [
+            "Liaquat Market",
+            "Ammar-E-Yasir Phase 1",
+            "Saudabad",
+            "H Area",
+            "Quaidabad",
+            "Shamsi Society",
+            "Model Colony",
+            "Rafa-E-Aam Society",
+            "Mola Raam Compound",
+            "Khokrapar",
+            "Kala Board",
+            "Urdu Nagar",
+            "Ghazi Town",
+            "Jaffar-E-Tayyar Society",
+            "Malir Halt",
+            "Malir",
+            "Malir Cantt",
+            "Malir 15",
+            "B Area",
+            "Millat Garden",
+            "Liaquat Square"
+        ],
+        "Karachi - Kemari": [
+            "KPT",
+            "Masaan",
+            "Sikandarabad",
+            "Kemari",
+            "Jackson Market"
+        ],
+        "Karachi - Mehmoodabad": [
+            "Mehmoodabad No. 6",
+            "Mehmoodabad No. 1",
+            "Azam Basti",
+            "Mehmoodabad No. 4",
+            "Mehmoodabad No. 2",
+            "Manzoor Colony",
+            "Mehmoodabad No. 5",
+            "Mehmoodabad No. 3"
+        ],
+        "Karachi - Kharadar": [
+            "Motan Das Cloth Market",
+            "Wazir Mansion",
+            "Kharadar",
+            "Memon Masjid"
+        ],
+        "Karachi - Nazimabad": [
+            "Block 1",
+            "Block 2",
+            "Old Rizvia Society",
+            "Naya Nazimabad",
+            "Block 3",
+            "Block 4",
+            "Block 5"
+        ],
+        "Karachi - Baloch Colony": [
+            "Baloch Colony"
+        ],
+        "Karachi - Ranchorline": [
+            "Ranchorline"
+        ],
+        "Karachi - I.I Chundrigarh": [
+            "I.I Chundrigar",
+            "Shaheen Complex",
+            "Jinnah Court",
+            "Supreme Court",
+            "City Railway Colony",
+            "Altery Medan/Quarter",
+            "Hindu Juna Goth"
+        ],
+        "Karachi - Bahadurabad": [
+            "Sharfabad",
+            "Bihar Muslim Cooperative Housing Society",
+            "Bahadurabad",
+            "Kokan CHS"
+        ],
+        "Karachi - Firdous Colony": [
+            "Firdous Colony"
+        ],
+        "Karachi - P.E.C.H.S": [
+            "Khalid Bin Walid",
+            "Block 6",
+            "Tariq Road",
+            "Block 3",
+            "Block 5",
+            "Block 2"
+        ],
+        "Karachi - Surjani": [
+            "Sector 4B",
+            "Sector 12",
+            "Sector 6B",
+            "Sector 8",
+            "Sector 10",
+            "Surjani",
+            "Sector 7A",
+            "Khuda Ki Basti"
+        ],
+        "Karachi - Garden": [
+            "Garden West",
+            "Garden East",
+            "Soldier Bazaar"
+        ],
+        "Karachi - Akhter Colony": [
+            "Akhter Colony"
+        ],
+        "Karachi - Ramswami": [
+            "Ramswami"
+        ],
+        "Karachi - Pan Mandi": [
+            "Pan Mandi"
+        ],
+        "Karachi - Nishter Road": [
+            "Nishter Road"
+        ],
+        "Karachi - Nanwara": [
+            "Nanwara"
+        ],
+        "Karachi - Kamil Gali": [
+            "Kamil Gali"
+        ],
+        "Karachi - Kakri Ground": [
+            "Kakri Ground"
+        ],
+        "Karachi - Mithadar": [
+            "Mithadar"
+        ],
+        "Karachi - Lee Market": [
+            "Lee Market"
+        ],
+        "Karachi - Khada Market": [
+            "Khada Market"
+        ],
+        "Karachi - Askari": [
+            "Askari 3",
+            "Askari 4",
+            "Askari 5",
+            "Askari Park",
+            "Askari 1",
+            "Askari 2"
+        ],
+        "Karachi - Bahria Town": [
+            "Precinct 30",
+            "Precinct 25",
+            "Precinct 22",
+            "Precinct 33",
+            "Precinct 17",
+            "Precinct 16",
+            "Precinct 27",
+            "Precinct 19",
+            "Precinct 12",
+            "Precinct 20",
+            "Precinct 13",
+            "Precinct 1",
+            "Precinct 9",
+            "Precinct 6",
+            "Precinct 4",
+            "Precinct 31",
+            "Precinct 5",
+            "Precinct 29",
+            "Precinct 18",
+            "Precinct 24",
+            "Precinct 15",
+            "Precinct 3",
+            "Precinct 7",
+            "Precinct 32",
+            "Precinct 14",
+            "Precinct 10",
+            "Precinct 21",
+            "Precinct 23",
+            "Precinct 26",
+            "Precinct 28",
+            "Precinct 2",
+            "Precinct 8",
+            "Precinct 11"
+        ],
+        "Karachi - Pipri Goth": [
+            "Pipri Goth"
+        ],
+        "Karachi - Liyari": [
+            "Liyari",
+            "8 Chowk",
+            "Kharadar",
+            "Machar Colony",
+            "Bihar Colony",
+            "Baghdadi",
+            "Nayabad",
+            "Chakiwara",
+            "Moosa lane",
+            "Cheel Chowk",
+            "Mithadar",
+            "Kumbharwara",
+            "Lee Market",
+            "Taiser Town Scheme 45"
+        ],
+        "Karachi - Sultanabad": [
+            "Sultanabad - Liaquatabad",
+            "Haji Camp",
+            "Sultanabad - PIDC"
+        ],
+        "Karachi - PIB Colony": [
+            "PIB Colony"
+        ],
+        "Karachi - New Surjani": [
+            "New Surjani"
+        ],
+        "Karachi - Manora": [
+            "Manora"
+        ],
+        "Karachi - S.I.T.E": [
+            "Gulbai",
+            "Sher Shah",
+            "Pak Colony",
+            "Metrovile - Pathan Colony",
+            "Asif Colony",
+            "Haroonabad",
+            "S.I.T.E",
+            "Golimar",
+            "Hasrat Mohani Colony",
+            "Old Golimar",
+            "Wilayatabad",
+            "Labour Square"
+        ],
+        "Karachi - Shabbirabad": [
+            "Shabbirabad"
+        ],
+        "Karachi - Sher Shah": [
+            "Sher Shah"
+        ],
+        "Karachi - Shadman Town": [
+            "Shadman Sector 14 - B",
+            "Shadman Sector 14 - A"
+        ],
+        "Karachi - Maripur": [
+            "Shah Latif Colony",
+            "Maripur",
+            "Masroor Colony",
+            "Naval Colony Mauripur"
+        ],
+        "Karachi - North Nazimabad": [
+            "Block D",
+            "Block C",
+            "Block M",
+            "Block R",
+            "Block G",
+            "Block K",
+            "Block T",
+            "Block N",
+            "Block F",
+            "Block I",
+            "Block A",
+            "Block H",
+            "Block B",
+            "Block J",
+            "Block Q",
+            "Block O",
+            "Block P",
+            "Block E",
+            "Block L",
+            "Block S"
+        ],
+        "Karachi - Lines Area": [
+            "Jutland Lines"
+        ],
+        "Karachi - Muslimabad Society": [
+            "Muslimabad Society"
+        ],
+        "Karachi - Abyssinia Lines": [
+            "AB Sinia Colony"
+        ],
+        "Karachi - Khudadad Colony": [
+            "Khudadad Colony"
+        ],
+        "Karachi - Gulshan-e-Hadeed": [
+            "Phase 2",
+            "EIDU Goth",
+            "Mehran Road",
+            "PTCL Satellite Station",
+            "Shah Town",
+            "Shahnawaz Goth",
+            "Steel Town",
+            "Phase 3",
+            "Phase 1",
+            "Gulshan-e-Mauzzam",
+            "Shah Latif Town",
+            "TCP Godowns",
+            "Data Nagar",
+            "Gulshan-e-Rehman"
+        ],
+        "Karachi - K.D.A Officers": [
+            "K.D.A Officers"
+        ],
+        "Karachi - Cantonment NHS": [
+            "Navy Housing Scheme - Karsaz",
+            "Navy Housing Scheme - Zamzama"
+        ],
+        "Karachi - Cantonment Railway Station": [
+            "Cantt"
+        ],
+        "Karachi - BufferZone": [
+            "Sector 16 A",
+            "Sector 16 B",
+            "Sector 15 B",
+            "Sector 15 A 2",
+            "Sector 15 A 3",
+            "Sector 15 A 4",
+            "Sector 15 A 5",
+            "Sector 15 A 1"
+        ],
+        "Karachi - Jacob Lines": [
+            "Jacob Lines"
+        ],
+        "Karachi - Jodia Bazar": [
+            "Jodia Bazar"
+        ],
+        "Karachi - Bombay Bazar": [
+            "Bombay Bazar"
+        ],
+        "Karachi - Bohra Pir": [
+            "Bohra Pir"
+        ],
+        "Karachi - F.C Area": [
+            "C Area",
+            "C1 Area"
+        ],
+        "Karachi - Bhimpora": [
+            "Bhimpora"
+        ],
+        "Karachi - Kagzi Bazar": [
+            "Kagzi Bazar"
+        ],
+        "Karachi - Civil Lines": [
+            "Civil Lines"
+        ],
+        "Karachi - Muhammad Ali Society": [
+            "Adamjee Nagar",
+            "KDA Scheme 1",
+            "Dhoraji",
+            "Bahadur Yar Jung Society"
+        ],
+        "Karachi - Ittehad Town": [
+            "Ittehad Town"
+        ],
+        "Karachi - Qayummabad": [
+            "Qayummabad"
+        ],
+        "Karachi - Cantonment Regent Plaza": [
+            "Regent Plaza"
+        ],
+        "Karachi - Cantonment FTC": [
+            "Finance Trade Centre"
+        ],
+        "Karachi - Cantonment Daud Pota Road": [
+            "Daud Pota Road"
+        ],
+        "Karachi - Cantonment PAF Base": [
+            "PAF Base Sharah-e-Faisal"
+        ]
+    }
+}
