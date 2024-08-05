@@ -3,3 +3,4 @@ requests
 sql
 sqlalchemy
 pathlib
+dvc

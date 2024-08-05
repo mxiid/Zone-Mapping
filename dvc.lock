@@ -1,0 +1,32 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python pipeline/data_ingestion.py
+    deps:
+    - path: pipeline/data_ingestion.py
+      hash: md5
+      md5: a7a2e7fee64baa87986777fd3edf7f69
+      size: 4505
+    outs:
+    - path: artifacts/data_ingestion/order_details.csv
+      hash: md5
+      md5: 91c4e5a72ad1a6af31d2175cb52ad7d9
+      size: 1577
+  regex_processing:
+    cmd: python pipeline/regex_processing.py
+    deps:
+    - path: artifacts/data_ingestion/
+      hash: md5
+      md5: a0e8dcbcf51217249c732a10325d6a7d.dir
+      size: 1577
+      nfiles: 1
+    - path: pipeline/regex_processing.py
+      hash: md5
+      md5: c43548e4eb14e2fe4347a3fb5d495aec
+      size: 4401
+    outs:
+    - path: artifacts/regex_processing/
+      hash: md5
+      md5: ece629a592b0193f20ec8f6170e9245f.dir
+      size: 7368
+      nfiles: 1

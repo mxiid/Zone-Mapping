@@ -76,6 +76,7 @@ class DataIngestionPipeline:
                    origin_city_id,
                    origin_city_name,
                    city_id,
+                   delivery_address,
                    dest_city_name,
                    warehouse_id,
                    warehouse_title,
@@ -97,7 +98,7 @@ class DataIngestionPipeline:
             return None
 
     def save_data(self, data, filename):
-        filepath = Path("artifacts") / filename
+        filepath = Path("artifacts/data_ingestion") / filename
         filepath.parent.mkdir(parents=True, exist_ok=True)
         data.to_csv(filepath, index=False)
         self.logger.info(f"Data saved to {filepath}")

@@ -1,0 +1,15 @@
+stages:
+  data_ingestion:
+    cmd: python pipeline/data_ingestion.py
+    deps:
+      - pipeline/data_ingestion.py
+    outs:
+      - artifacts/data_ingestion/order_details.csv
+
+  regex_processing:
+    cmd: python pipeline/regex_processing.py
+    deps:
+      - pipeline/regex_processing.py
+      - artifacts/data_ingestion/
+    outs:
+      - artifacts/regex_processing/
