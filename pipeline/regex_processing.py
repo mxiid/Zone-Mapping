@@ -3,25 +3,24 @@ import json
 import pandas as pd
 from pathlib import Path
 import logging
+from functools import lru_cache
 
 
 class RegexProcessingPipeline:
     def __init__(self):
-        # Define file paths
         self.zones_file = Path("components/city_hierarchy.json")
         self.input_file = Path("artifacts/data_ingestion/order_details.csv")
-        self.output_file = Path(
-            "artifacts/regex_processing/processed_order_details.csv"
-        )
+        self.output_file = Path("artifacts/regex_processing/processed_data_details.csv")
 
-        # Configure logging
         logging.basicConfig(
             level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
         )
         self.logger = logging.getLogger(__name__)
 
-        # Ensure the artifacts directory exists
         self.output_file.parent.mkdir(parents=True, exist_ok=True)
+
+        self.city_hierarchy = self.load_zones()
+        self.patterns = self.compile_patterns(self.city_hierarchy)
 
     def load_zones(self):
         try:
@@ -31,66 +30,82 @@ class RegexProcessingPipeline:
             self.logger.error(f"Failed to load zones file: {e}")
             raise
 
-    def compile_patterns(self, zones):
-        return {
-            zone: [
-                re.compile(r"\b{}\b".format(variation), re.IGNORECASE)
-                for variation in variations
-            ]
-            for zone, variations in zones.items()
+    def compile_patterns(self, city_hierarchy):
+        patterns = {}
+        for city, areas in city_hierarchy.items():
+            for area, localities in areas.items():
+                area_name = area.split(" - ")[-1]
+                pattern = re.compile(
+                    r"(?i)"
+                    + "|".join(
+                        r"(?:\b|(?<=\W)){}(?:\b|(?=\W))".format(re.escape(locality))
+                        for locality in localities
+                    )
+                )
+                patterns[f"{city} - {area_name}"] = pattern
+        return patterns
+
+    @lru_cache(maxsize=10000)
+    def extract_zones(self, address, city):
+        if pd.isna(address) or pd.isna(city):
+            return {}
+
+        address = self.preprocess_address(address)
+        matched_areas = {
+            area.split(" - ")[1]: pattern.pattern
+            for area, pattern in self.patterns.items()
+            if area.startswith(f"{city} - ") and pattern.search(address)
         }
 
-    def extract_zones(self, address, patterns):
-        if pd.isna(address):
-            return {}
-        matched_zones = {}
-        for zone, patterns in patterns.items():
-            matched_terms = [
-                pattern.pattern for pattern in patterns if pattern.search(address)
-            ]
-            if matched_terms:
-                matched_zones[zone] = matched_terms
-        return matched_zones
+        if not matched_areas:
+            self.logger.warning(
+                f"No matches found for address: {address} in city: {city}"
+            )
+
+        return matched_areas
+
+    def preprocess_address(self, address):
+        address = " ".join(address.lower().split())
+        address = re.sub(r"[^a-z0-9\s,]", "", address)
+        return address
+
+    def process_chunk(self, chunk):
+        chunk["delivery_address"] = (
+            chunk["delivery_address"].fillna("").apply(self.preprocess_address)
+        )
+        chunk["Matched Zones"] = chunk.apply(
+            lambda row: self.extract_zones(
+                row["delivery_address"], row["dest_city_name"]
+            ),
+            axis=1,
+        )
+        chunk["Count of Zones matched"] = chunk["Matched Zones"].apply(len)
+        chunk["Matched Terms"] = chunk["Matched Zones"].apply(
+            lambda x: ", ".join(x.values())
+        )
+
+        # Update L3_L4 only when exactly one zone is matched and it's the L3_L4 itself
+        chunk["L3_L4"] = chunk.apply(
+            lambda row: (
+                next(iter(row["Matched Zones"].keys()))
+                if row["Count of Zones matched"] == 1
+                else ""
+            ),
+            axis=1,
+        )
+
+        # Replace the original L3_L4 with the new one
+        chunk = chunk.drop(columns=["Matched Zones"])
+        chunk = chunk.drop(columns=["Count of Zones matched"])
+        chunk = chunk.drop(columns=["Matched Terms"])
+
+        return chunk
 
     def process_data(self):
         try:
-            # Load data
-            data = pd.read_csv(self.input_file)
-            data = data.dropna()
-            data["delivery_address"] = data["delivery_address"].fillna("").astype(str)
-
-            # Load zones and compile patterns
-            zones = self.load_zones()
-            patterns = self.compile_patterns(zones)
-
-            # Prepare a DataFrame for zone columns
-            zone_columns = {zone: 0 for zone in zones.keys()}
-
-            # Process data
-            data["Matched Zones"] = data["delivery_address"].apply(
-                lambda addr: self.extract_zones(addr, patterns)
-            )
-            data["Matched Terms"] = ""
-            data["Count of Zones matched"] = 0
-
-            # Create a DataFrame for the zone columns
-            zone_df = pd.DataFrame(columns=zone_columns.keys())
-
-            # Add the zone columns to the original data
-            data = pd.concat([data, zone_df], axis=1)
-
-            for i, row in data.iterrows():
-                matched_zones = row["Matched Zones"]
-                matched_terms_list = []
-                for zone, terms in matched_zones.items():
-                    data.at[i, zone] = 1
-                    matched_terms_list.extend(terms)
-                data.at[i, "Count of Zones matched"] = len(matched_zones)
-                data.at[i, "Matched Terms"] = ", ".join(matched_terms_list)
-
-            data.drop(columns=["Matched Zones"], inplace=True)
-            return data
-
+            df = pd.read_csv(self.input_file)
+            processed_df = self.process_chunk(df)
+            return processed_df
         except Exception as e:
             self.logger.error(f"Failed to process data: {e}")
             raise

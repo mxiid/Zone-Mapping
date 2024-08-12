@@ -1,7 +1,9 @@
 import logging
 import os 
 from pipeline.data_ingestion import DataIngestionPipeline
-from pipeline.regex_processing import RegexProcessor
+from pipeline.regex_processing import RegexProcessingPipeline
+from pipeline.api_processing import APIGeocodingPipeline
+from pipeline.warehouse_mapping import WarehouseMappingPipeline
 
 # Configure logging
 logging.basicConfig(
@@ -28,7 +30,35 @@ STAGE_NAME = "REGEX PROCESSING"
 if __name__ == "__main__":
     try:
         logger.info(f">>> STAGE {STAGE_NAME} STARTED <<<")
-        obj = RegexProcessor()
+        obj = RegexProcessingPipeline()
+        obj.main()
+        logger.info(f">>> STAGE {STAGE_NAME} COMPLETED <<<")
+
+    except Exception as e:
+        logger.error(f">>> STAGE {STAGE_NAME} FAILED <<<")
+        logger.exception(e)
+        raise e
+
+STAGE_NAME = "API PROCESSING"
+
+if __name__ == "__main__":
+    try:
+        logger.info(f">>> STAGE {STAGE_NAME} STARTED <<<")
+        obj = APIGeocodingPipeline()
+        obj.main()
+        logger.info(f">>> STAGE {STAGE_NAME} COMPLETED <<<")
+
+    except Exception as e:
+        logger.error(f">>> STAGE {STAGE_NAME} FAILED <<<")
+        logger.exception(e)
+        raise e
+
+STAGE_NAME = "WAREHOUSE MAPPING"
+
+if __name__ == "__main__":
+    try:
+        logger.info(f">>> STAGE {STAGE_NAME} STARTED <<<")
+        obj = WarehouseMappingPipeline()
         obj.main()
         logger.info(f">>> STAGE {STAGE_NAME} COMPLETED <<<")
 

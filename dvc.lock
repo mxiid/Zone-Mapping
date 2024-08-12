@@ -17,16 +17,16 @@ stages:
     deps:
     - path: artifacts/data_ingestion/
       hash: md5
-      md5: a0e8dcbcf51217249c732a10325d6a7d.dir
-      size: 1577
-      nfiles: 1
+      md5: 1c5ac24277122c67184a8ee746dc4152.dir
+      size: 12679069
+      nfiles: 2
     - path: pipeline/regex_processing.py
       hash: md5
-      md5: c43548e4eb14e2fe4347a3fb5d495aec
-      size: 4401
+      md5: d231c4bdd4ef8eb6509dcf80bc511d19
+      size: 4945
     outs:
     - path: artifacts/regex_processing/
       hash: md5
-      md5: ece629a592b0193f20ec8f6170e9245f.dir
-      size: 7368
+      md5: 279d10c9dcf8598a950e46f818e6e490.dir
+      size: 147226128
       nfiles: 1

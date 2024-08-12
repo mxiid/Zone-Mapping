@@ -1,18 +1,17 @@
-import requests
+import mysql.connector
 import pandas as pd
 import logging
-from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 
 class DataIngestionPipeline:
     def __init__(self):
-        self.REDASH_HOST = "https://redash.truckitin.ai"
-        self.API_KEY = "loMLO5S6tcTusPWt5dcExEA4qMaRRQBbrkbcSuLx"
-        self.DATA_SOURCE_ID = "14"
-        self.headers = {
-            "Authorization": f"Key {self.API_KEY}",
-            "Content-Type": "application/json",
+        # MySQL connection details
+        self.DB_CONFIG = {
+            "host": "34.143.155.251",  # Read DB IP
+            "user": "masteruser1",
+            "password": "lsU^$ld55UR$110",
+            "database": "rider_db_orders",  # Replace with your actual database name
         }
 
         # Configure logging
@@ -21,52 +20,32 @@ class DataIngestionPipeline:
         )
         self.logger = logging.getLogger(__name__)
 
-    def submit_query(self, query):
-        url = f"{self.REDASH_HOST}/api/query_results"
-        payload = {"data_source_id": self.DATA_SOURCE_ID, "query": query, "max_age": 0}
-        response = requests.post(url, headers=self.headers, json=payload)
-        response.raise_for_status()
-        return response.json()["job"]["id"]
-
-    def check_job_status(self, job_id):
-        url = f"{self.REDASH_HOST}/api/jobs/{job_id}"
-        response = requests.get(url, headers=self.headers)
-        response.raise_for_status()
-        return response.json()["job"]
-
-    def get_query_results(self, query_result_id):
-        url = f"{self.REDASH_HOST}/api/query_results/{query_result_id}.json"
-        response = requests.get(url, headers=self.headers)
-        response.raise_for_status()
-        return response.json()["query_result"]["data"]["rows"]
+    def connect_to_db(self):
+        try:
+            connection = mysql.connector.connect(**self.DB_CONFIG)
+            self.logger.info("Successfully connected to the database")
+            return connection
+        except mysql.connector.Error as err:
+            self.logger.error(f"Error connecting to the database: {err}")
+            return None
 
     def run_query(self, query):
-        try:
-            job_id = self.submit_query(query)
-            self.logger.info(f"Job ID: {job_id}")
-
-            while True:
-                job = self.check_job_status(job_id)
-                status = job["status"]
-                self.logger.info(f"Job Status: {status}")
-
-                if status == 3:  # completed
-                    return self.get_query_results(job["query_result_id"])
-                elif status == 4:  # failed
-                    self.logger.error(
-                        f"Query execution failed: {job.get('error', 'No error message provided')}"
-                    )
-                    return None
-
-                # Use ThreadPoolExecutor for non-blocking wait
-                with ThreadPoolExecutor() as executor:
-                    future = executor.submit(self.check_job_status, job_id)
-                    job = future.result(timeout=1)
-
-        except requests.exceptions.RequestException as e:
-            self.logger.error(f"Request failed: {e}")
-        except KeyError as e:
-            self.logger.error(f"Unexpected response format: {e}")
+        connection = self.connect_to_db()
+        if connection:
+            try:
+                cursor = connection.cursor(dictionary=True)
+                cursor.execute(query)
+                results = cursor.fetchall()
+                self.logger.info("Query executed successfully")
+                return results
+            except mysql.connector.Error as err:
+                self.logger.error(f"Error executing query: {err}")
+                return None
+            finally:
+                if connection.is_connected():
+                    cursor.close()
+                    connection.close()
+                    self.logger.info("Database connection closed")
         return None
 
     def get_order_details(self):
@@ -84,14 +63,22 @@ class DataIngestionPipeline:
                    area_title,
                    sort_addr_id,
                    sort_addr_title,
-                   CONCAT(area_title, ' > ', sort_addr_title) AS L3_L4
-            FROM OrderDetails
-            LIMIT 10"""
+                   nsa,
+                   area_id_old,
+                   area_title_old,
+                   sort_addr_id_old,
+                   sort_addr_title_old,
+                   warehouse_id_old,
+                   warehouse_title_old,
+                   CONCAT(area_title, ' > ', sort_addr_title) AS L3_L4,
+                   sorted_flag
+            FROM STAGING_db_orders.OrderDetails
+            LIMIT 100"""
 
         results = self.run_query(query)
         if results:
             df = pd.DataFrame(results)
-            self.logger.info("Query executed successfully.")
+            self.logger.info("Query executed successfully.") 
             return df
         else:
             self.logger.error("Query execution failed.")
