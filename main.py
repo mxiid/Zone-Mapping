@@ -4,6 +4,7 @@ from pipeline.data_ingestion import DataIngestionPipeline
 from pipeline.regex_processing import RegexProcessingPipeline
 from pipeline.api_processing import APIGeocodingPipeline
 from pipeline.warehouse_mapping import WarehouseMappingPipeline
+from pipeline.data_write import DataWritingPipeline
 
 # Configure logging
 logging.basicConfig(
@@ -59,6 +60,20 @@ if __name__ == "__main__":
     try:
         logger.info(f">>> STAGE {STAGE_NAME} STARTED <<<")
         obj = WarehouseMappingPipeline()
+        obj.main()
+        logger.info(f">>> STAGE {STAGE_NAME} COMPLETED <<<")
+
+    except Exception as e:
+        logger.error(f">>> STAGE {STAGE_NAME} FAILED <<<")
+        logger.exception(e)
+        raise e
+
+STAGE_NAME = "DATA WRITING"
+
+if __name__ == "__main__":
+    try:
+        logger.info(f">>> STAGE {STAGE_NAME} STARTED <<<")
+        obj = DataWritingPipeline()
         obj.main()
         logger.info(f">>> STAGE {STAGE_NAME} COMPLETED <<<")
 

@@ -8,6 +8,69 @@ class WarehouseMappingPipeline:
         self.mapping_file = Path("components/L3 Mapping.csv")
         self.output_file = Path("artifacts/warehouse_mapping/mapped_data_details.csv")
         self.output_file.parent.mkdir(parents=True, exist_ok=True)
+        self.direct_mapping_cities = [
+            "Alipur chatha",
+            "Aroop Town",
+            "Bahawalpur",
+            "Bhagtanwala",
+            "Bhera",
+            "Charsadda",
+            "Faisalabad",
+            "Garjakh",
+            "Ghotki",
+            "Gujranwala",
+            "Hyderabad",
+            "Jamshoro",
+            "Jaranwala",
+            "Jehangira",
+            "KAMOKE",
+            "KhurrianWala",
+            "Kot Khizri",
+            "Kot Momen",
+            "Kotmomin",
+            "Kotri",
+            "Kunjah",
+            "More Emin Abad",
+            "Multan",
+            "Muzaffarabad",
+            "Nandipur",
+            "Nawab Pur",
+            "Nawabshah",
+            "Nizamabad",
+            "Nizampur",
+            "Nowshera Virkan",
+            "Peshawar",
+            "Phularwan",
+            "Qadir Pur",
+            "Qasim Pur",
+            "Qila Didar Singh",
+            "Quetta",
+            "Rahim Yar Khan",
+            "Raj Kot",
+            "Rawalpindi",
+            "Rohri",
+            "Sadiqabad",
+            "Sahiwal",
+            "Sargodha",
+            "Shahdara",
+            "Shahpur",
+            "Shahpur Sadar",
+            "Sialkot",
+            "Sillanwali",
+            "Sukkur",
+            "Talagang",
+            "Tando Allahyar",
+            "Tando Jam",
+            "Taxila",
+            "Toba Tek Singh",
+            "Wah",
+            "Wah Cantt",
+            "Wazirabad",
+            "Yazman",
+            "Bani Gala",
+            "Dera Ismail Khan",
+            "Gujrat",
+        ]
 
     def load_data(self):
         try:
@@ -19,15 +82,46 @@ class WarehouseMappingPipeline:
             return None, None
 
     def normalize_city_name(self, city_name):
-        city_name = city_name.strip().lower()
+        if pd.isna(city_name):
+            return ""
+        city_name = str(city_name).strip().lower()
         if city_name in ["khi", "karachi"]:
             return "karachi"
         return city_name
 
+    def direct_city_mapping(self, city_name, mapping_df):
+        if pd.isna(city_name):
+            return None, None
+
+        normalized_city = self.normalize_city_name(city_name)
+        for direct_city in self.direct_mapping_cities:
+            if normalized_city == self.normalize_city_name(direct_city):
+                match = mapping_df[
+                    mapping_df["dest_city_name"].apply(self.normalize_city_name)
+                    == normalized_city
+                ]
+                if not match.empty:
+                    return (
+                        match["L4_Id"].iloc[0],
+                        match["Correct Warehouse Title"].iloc[0],
+                    )
+        return None, None
+
     def map_warehouse(self, row, mapping_df):
-        # Normalize city names for comparison
+        # First, try direct city mapping
+        l4_id, warehouse_title = self.direct_city_mapping(
+            row["dest_city_name"], mapping_df
+        )
+        if l4_id is not None:
+            return pd.Series(
+                {
+                    "Mapped_L4_Id": l4_id,
+                    "Mapped_Warehouse_Title": warehouse_title,
+                }
+            )
+
+        # If direct mapping fails, proceed with the original logic
         normalized_city = self.normalize_city_name(row["dest_city_name"])
-        row["dest_city_name"] = normalized_city
 
         # First attempt to match using L3_Area
         l3_match = mapping_df[
@@ -35,16 +129,19 @@ class WarehouseMappingPipeline:
                 mapping_df["dest_city_name"].apply(self.normalize_city_name)
                 == normalized_city
             )
-            & (mapping_df["L3_Area"].str.lower() == row["L3_L4"].strip().lower())
+            & (
+                mapping_df["L3_Area"].str.lower()
+                == self.normalize_city_name(row["L3_L4"])
+            )
         ]
 
         if not l3_match.empty:
             return pd.Series(
                 {
-                    "Mapped_L4_Id": l3_match["L4_Id"].values[0],
-                    "Mapped_Warehouse_Title": l3_match[
-                        "Correct Warehouse Title"
-                    ].values[0],
+                    "Mapped_L4_Id": l3_match["L4_Id"].iloc[0],
+                    "Mapped_Warehouse_Title": l3_match["Correct Warehouse Title"].iloc[
+                        0
+                    ],
                 }
             )
 
@@ -54,16 +151,19 @@ class WarehouseMappingPipeline:
                 mapping_df["dest_city_name"].apply(self.normalize_city_name)
                 == normalized_city
             )
-            & (mapping_df["L4_Zone"].str.lower() == row["L3_L4"].strip().lower())
+            & (
+                mapping_df["L4_Zone"].str.lower()
+                == self.normalize_city_name(row["L3_L4"])
+            )
         ]
 
         if not l4_match.empty:
             return pd.Series(
                 {
-                    "Mapped_L4_Id": l4_match["L4_Id"].values[0],
-                    "Mapped_Warehouse_Title": l4_match[
-                        "Correct Warehouse Title"
-                    ].values[0],
+                    "Mapped_L4_Id": l4_match["L4_Id"].iloc[0],
+                    "Mapped_Warehouse_Title": l4_match["Correct Warehouse Title"].iloc[
+                        0
+                    ],
                 }
             )
 
