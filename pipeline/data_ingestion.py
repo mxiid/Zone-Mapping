@@ -71,7 +71,7 @@ class DataIngestionPipeline:
                    warehouse_id_old,
                    warehouse_title_old,
                    CONCAT(area_title, ' > ', sort_addr_title) AS L3_L4,
-                   sorted_flag
+                   sorted_flag,
             FROM STAGING_db_orders.OrderDetails
             LIMIT 100"""
 
