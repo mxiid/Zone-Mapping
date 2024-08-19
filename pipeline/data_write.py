@@ -72,6 +72,12 @@ class DataWritingPipeline:
                         row["Mapped_Warehouse_Title"].strip() 
                         if pd.notna(row["Mapped_Warehouse_Title"]) else None
                     )
+                    mapped_warehouse_id = (
+                        row["mapped_warehouse_id"] if pd.notna(row["mapped_warehouse_id"]) else None
+                    )
+                    mapped_l3_id = (
+                        row["mapped_l3_id"] if pd.notna(row["mapped_l3_id"]) else None
+                    )
 
                     # Log the values to be updated for verification
                     logger.info(
@@ -101,6 +107,7 @@ class DataWritingPipeline:
                         area_title = %s,
                         sort_addr_id = %s,
                         sort_addr_title = %s,
+                        warehouse_id = %s,
                         warehouse_title = %s,
                         sorted_flag = 1
                     WHERE id = %s
@@ -109,10 +116,11 @@ class DataWritingPipeline:
                         cursor,
                         update_new_query,
                         (
-                            mapped_l4_id,
+                            mapped_l3_id,
                             l3_l4,
-                            mapped_l4_id,
+                            mapped_l3_id,
                             l3_l4,
+                            mapped_warehouse_id,
                             mapped_warehouse_title,
                             row["id"],
                         ),

@@ -37,6 +37,7 @@ class RegexProcessingPipeline:
                 area_name = area.split(" - ")[-1]
                 pattern = re.compile(
                     r"(?i)"
+                    + r"(?:\b|(?<=\W)){}(?:\b|(?=\W))|".format(re.escape(area_name))
                     + "|".join(
                         r"(?:\b|(?<=\W)){}(?:\b|(?=\W))".format(re.escape(locality))
                         for locality in localities
@@ -70,21 +71,27 @@ class RegexProcessingPipeline:
         return address
 
     def process_chunk(self, chunk):
+        chunk['original_delivery_address'] = chunk['delivery_address']
+
         chunk["delivery_address"] = (
             chunk["delivery_address"].fillna("").apply(self.preprocess_address)
         )
+
         chunk["Matched Zones"] = chunk.apply(
             lambda row: self.extract_zones(
                 row["delivery_address"], row["dest_city_name"]
             ),
             axis=1,
         )
+        
         chunk["Count of Zones matched"] = chunk["Matched Zones"].apply(len)
         chunk["Matched Terms"] = chunk["Matched Zones"].apply(
             lambda x: ", ".join(x.values())
         )
 
-        # Update L3_L4 only when exactly one zone is matched and it's the L3_L4 itself
+        # **Add this debug statement**
+        self.logger.info("Matched Zones: %s", chunk["Matched Zones"].tolist())
+
         chunk["L3_L4"] = chunk.apply(
             lambda row: (
                 next(iter(row["Matched Zones"].keys()))
@@ -94,12 +101,14 @@ class RegexProcessingPipeline:
             axis=1,
         )
 
-        # Replace the original L3_L4 with the new one
-        chunk = chunk.drop(columns=["Matched Zones"])
-        chunk = chunk.drop(columns=["Count of Zones matched"])
-        chunk = chunk.drop(columns=["Matched Terms"])
+        # **Add this debug statement**
+        self.logger.info("Assigned L3_L4: %s", chunk["L3_L4"].tolist())
+
+        chunk['delivery_address'] = chunk['original_delivery_address']
+        chunk = chunk.drop(columns=["Matched Zones", "Count of Zones matched", "Matched Terms", "original_delivery_address"])
 
         return chunk
+
 
     def process_data(self):
         try:

@@ -74,11 +74,24 @@ class WarehouseMappingPipeline:
 
     def load_data(self):
         try:
+            # Attempting to load the data using 'utf-8' encoding
+            print("Attempting to load data using 'utf-8' encoding...")
             data_df = pd.read_csv(self.input_file)
             mapping_df = pd.read_csv(self.mapping_file)
             return data_df, mapping_df
+        except UnicodeDecodeError as e:
+            print(f"UnicodeDecodeError encountered: {e}")
+            print("Retrying to load data with 'ISO-8859-1' encoding...")
+            try:
+                # Retry loading the data using 'ISO-8859-1' encoding
+                data_df = pd.read_csv(self.input_file, encoding="ISO-8859-1")
+                mapping_df = pd.read_csv(self.mapping_file, encoding="ISO-8859-1")
+                return data_df, mapping_df
+            except Exception as e:
+                print(f"Error loading data after retry: {e}")
+                return None, None
         except Exception as e:
-            print(f"Error loading data: {e}")
+            print(f"Unexpected error loading data: {e}")
             return None, None
 
     def normalize_city_name(self, city_name):
@@ -91,7 +104,7 @@ class WarehouseMappingPipeline:
 
     def direct_city_mapping(self, city_name, mapping_df):
         if pd.isna(city_name):
-            return None, None
+            return None, None, None, None
 
         normalized_city = self.normalize_city_name(city_name)
         for direct_city in self.direct_mapping_cities:
@@ -104,12 +117,22 @@ class WarehouseMappingPipeline:
                     return (
                         match["L4_Id"].iloc[0],
                         match["Correct Warehouse Title"].iloc[0],
+                        match["warehouse_id"].iloc[0],
+                        match["L3_Id"].iloc[0],
                     )
-        return None, None
+        return None, None, None, None
+
+    def extract_right_of_dash(self, area):
+        if pd.isna(area):
+            return ""
+        parts = area.split(" - ", 1)
+        if len(parts) > 1:
+            return parts[1].strip().lower()
+        return ""
 
     def map_warehouse(self, row, mapping_df):
         # First, try direct city mapping
-        l4_id, warehouse_title = self.direct_city_mapping(
+        l4_id, warehouse_title, warehouse_id, l3_id = self.direct_city_mapping(
             row["dest_city_name"], mapping_df
         )
         if l4_id is not None:
@@ -117,22 +140,24 @@ class WarehouseMappingPipeline:
                 {
                     "Mapped_L4_Id": l4_id,
                     "Mapped_Warehouse_Title": warehouse_title,
+                    "mapped_warehouse_id": warehouse_id,
+                    "mapped_l3_id": l3_id,
                 }
             )
 
         # If direct mapping fails, proceed with the original logic
         normalized_city = self.normalize_city_name(row["dest_city_name"])
 
-        # First attempt to match using L3_Area
+        # Extract and compare areas
+        mapping_df["Area_Right"] = mapping_df["L3_Area"].apply(
+            self.extract_right_of_dash
+        )
         l3_match = mapping_df[
             (
                 mapping_df["dest_city_name"].apply(self.normalize_city_name)
                 == normalized_city
             )
-            & (
-                mapping_df["L3_Area"].str.lower()
-                == self.normalize_city_name(row["L3_L4"])
-            )
+            & (mapping_df["Area_Right"] == self.normalize_city_name(row["L3_L4"]))
         ]
 
         if not l3_match.empty:
@@ -142,6 +167,8 @@ class WarehouseMappingPipeline:
                     "Mapped_Warehouse_Title": l3_match["Correct Warehouse Title"].iloc[
                         0
                     ],
+                    "mapped_warehouse_id": l3_match["warehouse_id"].iloc[0],
+                    "mapped_l3_id": l3_match["L3_Id"].iloc[0],
                 }
             )
 
@@ -164,10 +191,19 @@ class WarehouseMappingPipeline:
                     "Mapped_Warehouse_Title": l4_match["Correct Warehouse Title"].iloc[
                         0
                     ],
+                    "mapped_warehouse_id": l4_match["warehouse_id"].iloc[0],
+                    "mapped_l3_id": l4_match["L3_Id"].iloc[0],
                 }
             )
 
-        return pd.Series({"Mapped_L4_Id": None, "Mapped_Warehouse_Title": None})
+        return pd.Series(
+            {
+                "Mapped_L4_Id": None,
+                "Mapped_Warehouse_Title": None,
+                "mapped_warehouse_id": None,
+                "mapped_l3_id": None,
+            }
+        )
 
     def process_data(self, data_df, mapping_df):
         # Apply the mapping function row by row

@@ -50,29 +50,31 @@ class DataIngestionPipeline:
 
     def get_order_details(self):
         query = """
-            SELECT id,
-                   consignment_id,
-                   origin_city_id,
-                   origin_city_name,
-                   city_id,
-                   delivery_address,
-                   dest_city_name,
-                   warehouse_id,
-                   warehouse_title,
-                   area_id,
-                   area_title,
-                   sort_addr_id,
-                   sort_addr_title,
-                   nsa,
-                   area_id_old,
-                   area_title_old,
-                   sort_addr_id_old,
-                   sort_addr_title_old,
-                   warehouse_id_old,
-                   warehouse_title_old,
-                   CONCAT(area_title, ' > ', sort_addr_title) AS L3_L4,
-                   sorted_flag,
+                SELECT id,
+                consignment_id,
+                origin_city_id,
+                origin_city_name,
+                city_id,
+                delivery_address,
+                dest_city_name,
+                warehouse_id,
+                warehouse_title,
+                area_id,
+                area_title,
+                sort_addr_id,
+                sort_addr_title,
+                nsa,
+                area_id_old,
+                area_title_old,
+                sort_addr_id_old,
+                sort_addr_title_old,
+                warehouse_id_old,
+                warehouse_title_old,
+                CONCAT(area_title, ' > ', sort_addr_title) AS L3_L4,
+                sorted_flag
             FROM STAGING_db_orders.OrderDetails
+            WHERE DATE(booking_date) = CURRENT_DATE
+            AND sorted_flag = 0   
             LIMIT 100"""
 
         results = self.run_query(query)
