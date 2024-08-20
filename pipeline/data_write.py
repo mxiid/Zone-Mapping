@@ -60,8 +60,8 @@ class DataWritingPipeline:
             try:
                 updated_rows = 0
                 for _, row in df.iterrows():
-                    # Log row data for debugging
-                    logger.info(f"Row data: {row.to_dict()}")
+                    # # Log row data for debugging
+                    # logger.info(f"Row data: {row.to_dict()}")
 
                     # Prepare values with fallback for None
                     mapped_l4_id = (
@@ -128,7 +128,7 @@ class DataWritingPipeline:
                         logger.error(f"Failed to update new fields for id {row['id']}")
                     else:
                         updated_rows += 1
-                        logger.info(f"Successfully updated new fields for id {row['id']}")
+                        # logger.info(f"Successfully updated new fields for id {row['id']}")
 
                     # # Verify update
                     # verify_query = """
