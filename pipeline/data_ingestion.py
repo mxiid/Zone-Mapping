@@ -2,6 +2,7 @@ import mysql.connector
 import pandas as pd
 import logging
 from pathlib import Path
+import hashlib
 
 
 class DataIngestionPipeline:
@@ -19,6 +20,7 @@ class DataIngestionPipeline:
             level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
         )
         self.logger = logging.getLogger(__name__)
+        self.output_file = Path("artifacts/data_ingestion/order_details.csv")
 
     def connect_to_db(self):
         try:
@@ -80,11 +82,14 @@ class DataIngestionPipeline:
         results = self.run_query(query)
         if results:
             df = pd.DataFrame(results)
-            self.logger.info("Query executed successfully.") 
+            self.logger.info("Query executed successfully.")
             return df
         else:
             self.logger.error("Query execution failed.")
             return None
+
+    def get_data_hash(self, data):
+        return hashlib.md5(pd.util.hash_pandas_object(data).values).hexdigest()
 
     def save_data(self, data, filename):
         filepath = Path("artifacts/data_ingestion") / filename
@@ -94,12 +99,36 @@ class DataIngestionPipeline:
 
     def main(self):
         self.logger.info("Starting data ingestion process")
-        df = self.get_order_details()
-        if df is not None:
-            self.save_data(df, "order_details.csv")
-            self.logger.info("Data ingestion completed successfully")
+
+        # Check if the file exists
+        if self.output_file.exists():
+            existing_data = pd.read_csv(self.output_file)
+            existing_hash = self.get_data_hash(existing_data)
+
+            # Fetch new data
+            new_data = self.get_order_details()
+            if new_data is None:
+                self.logger.error("Failed to fetch new data")
+                return False
+
+            new_hash = self.get_data_hash(new_data)
+
+            if existing_hash == new_hash:
+                self.logger.info("No changes in data. Stopping execution.")
+                return False
+            else:
+                self.logger.info("Changes detected in data. Proceeding with execution.")
         else:
-            self.logger.error("Data ingestion failed")
+            self.logger.info("No existing file found. Proceeding with execution.")
+            new_data = self.get_order_details()
+            if new_data is None:
+                self.logger.error("Failed to fetch data")
+                return False
+
+        # Save the new data
+        self.save_data(new_data, "order_details.csv")
+        self.logger.info("Data ingestion completed successfully")
+        return True
 
 
 if __name__ == "__main__":
