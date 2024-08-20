@@ -58,10 +58,10 @@ class RegexProcessingPipeline:
             if area.startswith(f"{city} - ") and pattern.search(address)
         }
 
-        if not matched_areas:
-            self.logger.warning(
-                f"No matches found for address: {address} in city: {city}"
-            )
+        # if not matched_areas:
+        #     self.logger.warning(
+        #         f"No matches found for address: {address} in city: {city}"
+        #     )
 
         return matched_areas
 

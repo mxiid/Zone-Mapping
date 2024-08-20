@@ -23,9 +23,9 @@ class DataWritingPipeline:
         try:
             df = pd.read_csv(self.input_file)
             logger.info(f"Loaded {len(df)} rows from CSV file")
-            logger.info(
-                f"Sample of Mapped_Warehouse_Title: {df['Mapped_Warehouse_Title'].head()}"
-            )
+            # logger.info(
+            #     f"Sample of Mapped_Warehouse_Title: {df['Mapped_Warehouse_Title'].head()}"
+            # )
             return df
         except Exception as e:
             logger.error(f"Error loading data: {e}")
@@ -79,12 +79,12 @@ class DataWritingPipeline:
                         row["mapped_l3_id"] if pd.notna(row["mapped_l3_id"]) else None
                     )
 
-                    # Log the values to be updated for verification
-                    logger.info(
-                        f"Updating id {row['id']} with area_id={mapped_l4_id}, "
-                        f"area_title={l3_l4}, sort_addr_id={mapped_l4_id}, "
-                        f"sort_addr_title={l3_l4}, warehouse_title={mapped_warehouse_title}"
-                    )
+                    # # Log the values to be updated for verification
+                    # logger.info(
+                    #     f"Updating id {row['id']} with area_id={mapped_l4_id}, "
+                    #     f"area_title={l3_l4}, sort_addr_id={mapped_l4_id}, "
+                    #     f"sort_addr_title={l3_l4}, warehouse_title={mapped_warehouse_title}"
+                    # )
 
                     # Update old fields
                     update_old_query = """
@@ -130,15 +130,15 @@ class DataWritingPipeline:
                         updated_rows += 1
                         logger.info(f"Successfully updated new fields for id {row['id']}")
 
-                    # Verify update
-                    verify_query = """
-                    SELECT area_id, area_title, sort_addr_id, sort_addr_title, warehouse_title, sorted_flag
-                    FROM STAGING_db_orders.OrderDetails
-                    WHERE id = %s
-                    """
-                    if self.execute_query(cursor, verify_query, (row["id"],)):
-                        result = cursor.fetchone()
-                        logger.info(f"Verification for id {row['id']}: {result}")
+                    # # Verify update
+                    # verify_query = """
+                    # SELECT area_id, area_title, sort_addr_id, sort_addr_title, warehouse_title, sorted_flag
+                    # FROM STAGING_db_orders.OrderDetails
+                    # WHERE id = %s
+                    # """
+                    # if self.execute_query(cursor, verify_query, (row["id"],)):
+                    #     result = cursor.fetchone()
+                    #     logger.info(f"Verification for id {row['id']}: {result}")
 
                 connection.commit()
                 logger.info(f"Updated {updated_rows} rows in the database.")

@@ -68,7 +68,7 @@ class APIGeocodingPipeline:
         print("Starting geocoding process...")
         df = self.process_data()
         self.save_data(df)
-        print("Geocoding completed. Updated file saved with all original data and new geocoding information.")
+        self.logger.info("Geocoding Completed.")
 
 
 

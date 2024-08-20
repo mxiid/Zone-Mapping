@@ -73,7 +73,7 @@ class DataIngestionPipeline:
                 CONCAT(area_title, ' > ', sort_addr_title) AS L3_L4,
                 sorted_flag
             FROM STAGING_db_orders.OrderDetails
-            WHERE DATE(booking_date) = CURRENT_DATE
+            WHERE DATE(booking_date) = "2024-08-19"
             AND sorted_flag = 0   
             LIMIT 100"""
 
