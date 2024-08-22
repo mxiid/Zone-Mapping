@@ -76,8 +76,7 @@ class DataIngestionPipeline:
                 sorted_flag
             FROM STAGING_db_orders.OrderDetails
             WHERE DATE(booking_date) = CURRENT_DATE
-            AND sorted_flag = 0   
-            LIMIT 100"""
+            AND sorted_flag = 0"""
 
         results = self.run_query(query)
         if results:
