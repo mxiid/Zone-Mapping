@@ -34,16 +34,22 @@ class RegexProcessingPipeline:
         patterns = {}
         for city, areas in city_hierarchy.items():
             for area, localities in areas.items():
-                area_name = area.split(" - ")[-1]
+                pattern_parts = [re.escape(area)]  # Start with the area name
+                for locality in localities:
+                    if locality.startswith('\\'):
+                        # This is already a regex pattern, don't escape it
+                        pattern_parts.append(locality)
+                    else:
+                        # This is a normal string, escape it
+                        pattern_parts.append(re.escape(locality))
+                
                 pattern = re.compile(
-                    r"(?i)"
-                    + r"(?:\b|(?<=\W)){}(?:\b|(?=\W))|".format(re.escape(area_name))
-                    + "|".join(
-                        r"(?:\b|(?<=\W)){}(?:\b|(?=\W))".format(re.escape(locality))
-                        for locality in localities
-                    )
+                    r"(?i)"  # Case-insensitive
+                    + r"(?:\b|(?<=\W))(?:"  # Word boundary or preceded by non-word char
+                    + "|".join(pattern_parts)  # Join all patterns
+                    + r")(?:\b|(?=\W))"  # Word boundary or followed by non-word char
                 )
-                patterns[f"{city} - {area_name}"] = pattern
+                patterns[f"{city} - {area}"] = pattern
         return patterns
 
     @lru_cache(maxsize=10000)
@@ -52,16 +58,11 @@ class RegexProcessingPipeline:
             return {}
 
         address = self.preprocess_address(address)
-        matched_areas = {
-            area.split(" - ")[1]: pattern.pattern
-            for area, pattern in self.patterns.items()
-            if area.startswith(f"{city} - ") and pattern.search(address)
-        }
-
-        # if not matched_areas:
-        #     self.logger.warning(
-        #         f"No matches found for address: {address} in city: {city}"
-        #     )
+        matched_areas = {}
+        
+        for area, pattern in self.patterns.items():
+            if area.startswith(f"{city} - ") and pattern.search(address):
+                matched_areas[area] = pattern.pattern
 
         return matched_areas
 
@@ -84,25 +85,22 @@ class RegexProcessingPipeline:
             axis=1,
         )
         
+        # Add this debug logging
+        self.logger.info("Sample of Matched Zones: %s", chunk["Matched Zones"].head().to_dict())
+
         chunk["Count of Zones matched"] = chunk["Matched Zones"].apply(len)
         chunk["Matched Terms"] = chunk["Matched Zones"].apply(
             lambda x: ", ".join(x.values())
         )
 
-        # # **Add this debug statement**
-        # self.logger.info("Matched Zones: %s", chunk["Matched Zones"].tolist())
-
         chunk["L3_L4"] = chunk.apply(
             lambda row: (
-                next(iter(row["Matched Zones"].keys()))
+                next(iter(row["Matched Zones"].keys())).split(" - ", 1)[1]
                 if row["Count of Zones matched"] == 1
                 else ""
             ),
             axis=1,
         )
-
-        # # **Add this debug statement**
-        # self.logger.info("Assigned L3_L4: %s", chunk["L3_L4"].tolist())
 
         chunk['delivery_address'] = chunk['original_delivery_address']
         chunk = chunk.drop(columns=["Matched Zones", "Count of Zones matched", "Matched Terms", "original_delivery_address"])
