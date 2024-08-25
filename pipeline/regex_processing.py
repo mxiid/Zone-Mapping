@@ -89,8 +89,8 @@ class RegexProcessingPipeline:
             lambda x: ", ".join(x.values())
         )
 
-        # **Add this debug statement**
-        self.logger.info("Matched Zones: %s", chunk["Matched Zones"].tolist())
+        # # **Add this debug statement**
+        # self.logger.info("Matched Zones: %s", chunk["Matched Zones"].tolist())
 
         chunk["L3_L4"] = chunk.apply(
             lambda row: (
@@ -101,8 +101,8 @@ class RegexProcessingPipeline:
             axis=1,
         )
 
-        # **Add this debug statement**
-        self.logger.info("Assigned L3_L4: %s", chunk["L3_L4"].tolist())
+        # # **Add this debug statement**
+        # self.logger.info("Assigned L3_L4: %s", chunk["L3_L4"].tolist())
 
         chunk['delivery_address'] = chunk['original_delivery_address']
         chunk = chunk.drop(columns=["Matched Zones", "Count of Zones matched", "Matched Terms", "original_delivery_address"])
