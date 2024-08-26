@@ -131,7 +131,16 @@ class WarehouseMappingPipeline:
         return ""
 
     def map_warehouse(self, row, mapping_df):
-        # First, try direct city mapping
+        # First, check if L3_L4 is empty
+        if pd.isna(row["L3_L4"]) or row["L3_L4"] == "":
+            return pd.Series({
+                "Mapped_L4_Id": None,
+                "Mapped_Warehouse_Title": None,
+                "mapped_warehouse_id": 0,
+                "mapped_l3_id": None,
+            })
+
+        # If L3_L4 is not empty, proceed with the existing logic
         l4_id, warehouse_title, warehouse_id, l3_id = self.direct_city_mapping(
             row["dest_city_name"], mapping_df
         )
@@ -145,7 +154,6 @@ class WarehouseMappingPipeline:
                 }
             )
 
-        # If direct mapping fails, proceed with the original logic
         normalized_city = self.normalize_city_name(row["dest_city_name"])
 
         # Extract and compare areas
