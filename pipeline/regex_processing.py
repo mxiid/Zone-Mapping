@@ -34,20 +34,20 @@ class RegexProcessingPipeline:
         patterns = {}
         for city, areas in city_hierarchy.items():
             for area, localities in areas.items():
-                pattern_parts = [re.escape(area)]  # Start with the area name
+                pattern_parts = []
                 for locality in localities:
-                    if locality.startswith('\\'):
+                    if locality.startswith("\\"):
                         # This is already a regex pattern, don't escape it
-                        pattern_parts.append(locality)
+                        pattern_parts.append(f"(?:{locality})")
                     else:
-                        # This is a normal string, escape it
-                        pattern_parts.append(re.escape(locality))
-                
+                        # This is a normal string, escape it and add word boundaries
+                        pattern_parts.append(rf"\b{re.escape(locality)}\b")
+
                 pattern = re.compile(
                     r"(?i)"  # Case-insensitive
-                    + r"(?:\b|(?<=\W))(?:"  # Word boundary or preceded by non-word char
+                    + r"(?:"  # Start non-capturing group
                     + "|".join(pattern_parts)  # Join all patterns
-                    + r")(?:\b|(?=\W))"  # Word boundary or followed by non-word char
+                    + r")"  # End non-capturing group
                 )
                 patterns[f"{city} - {area}"] = pattern
         return patterns
@@ -59,20 +59,30 @@ class RegexProcessingPipeline:
 
         address = self.preprocess_address(address)
         matched_areas = {}
-        
+
         for area, pattern in self.patterns.items():
-            if area.startswith(f"{city} - ") and pattern.search(address):
-                matched_areas[area] = pattern.pattern
+            if area.startswith(f"{city} - "):
+                match = pattern.search(address)
+                if match:
+                    matched_term = match.group()
+                    matched_areas[area] = matched_term
+                    self.logger.debug(
+                        f"Match found for {area}: '{matched_term}' in address: '{address}'"
+                    )
+                else:
+                    self.logger.debug(f"No match for {area} in address: '{address}'")
 
         return matched_areas
 
     def preprocess_address(self, address):
-        address = " ".join(address.lower().split())
-        address = re.sub(r"[^a-z0-9\s,]", "", address)
+        # Convert to lowercase but keep hyphens and slashes
+        address = address.lower()
+        # Replace multiple spaces with a single space
+        address = re.sub(r"\s+", " ", address)
         return address
 
     def process_chunk(self, chunk):
-        chunk['original_delivery_address'] = chunk['delivery_address']
+        chunk["original_delivery_address"] = chunk["delivery_address"]
 
         chunk["delivery_address"] = (
             chunk["delivery_address"].fillna("").apply(self.preprocess_address)
@@ -84,9 +94,11 @@ class RegexProcessingPipeline:
             ),
             axis=1,
         )
-        
+
         # Add this debug logging
-        self.logger.info("Sample of Matched Zones: %s", chunk["Matched Zones"].head().to_dict())
+        self.logger.info(
+            "Sample of Matched Zones: %s", chunk["Matched Zones"].head().to_dict()
+        )
 
         chunk["Count of Zones matched"] = chunk["Matched Zones"].apply(len)
         chunk["Matched Terms"] = chunk["Matched Zones"].apply(
@@ -102,11 +114,26 @@ class RegexProcessingPipeline:
             axis=1,
         )
 
-        chunk['delivery_address'] = chunk['original_delivery_address']
-        chunk = chunk.drop(columns=["Matched Zones", "Count of Zones matched", "Matched Terms", "original_delivery_address"])
+        chunk["delivery_address"] = chunk["original_delivery_address"]
+        chunk = chunk.drop(
+            columns=[
+                "Matched Zones",
+                "Count of Zones matched",
+                "Matched Terms",
+                "original_delivery_address",
+            ]
+        )
 
         return chunk
 
+    def test_address(self, address, city):
+        self.logger.setLevel(logging.DEBUG)
+        result = self.extract_zones(address, city)
+        print(f"Test result for '{address}' in {city}:")
+        for area, matched_term in result.items():
+            print(f"  Matched {area}: '{matched_term}'")
+        if not result:
+            print("  No matches found")
 
     def process_data(self):
         try:
@@ -116,6 +143,10 @@ class RegexProcessingPipeline:
         except Exception as e:
             self.logger.error(f"Failed to process data: {e}")
             raise
+
+    def print_patterns(self):
+        for area, pattern in self.patterns.items():
+            print(f"{area}: {pattern.pattern}")
 
     def save_data(self, data):
         try:
