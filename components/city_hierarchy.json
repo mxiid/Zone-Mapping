@@ -2588,6 +2588,16 @@
         ]
     },
     "Islamabad": {
+        "PWD": [
+            "PWD",
+            "PWD Colony",
+            "PWD Housing Society",
+            "PWD Road",
+            "PWD Society",
+            "PWD Town",
+            "PWD Villas",
+            "Media Town"
+        ],
         "B-17": [
             "\\b[bB][ -]?17\\b",
             "\\b[bB][ -]?17/\\d+\\b",
