@@ -36,13 +36,15 @@ class RegexProcessingPipeline:
             for area, localities in areas.items():
                 pattern_parts = []
                 for locality in localities:
-                    if locality.startswith("\\"):
-                        # This is already a regex pattern, don't escape it
+                    try:
+                        # Try to compile the pattern as-is
+                        re.compile(locality)
+                        # If it compiles, use it directly
                         pattern_parts.append(f"(?:{locality})")
-                    else:
-                        # This is a normal string, escape it and add word boundaries
+                    except re.error:
+                        # If it doesn't compile, treat it as a literal string
                         pattern_parts.append(rf"\b{re.escape(locality)}\b")
-
+                
                 pattern = re.compile(
                     r"(?i)"  # Case-insensitive
                     + r"(?:"  # Start non-capturing group
