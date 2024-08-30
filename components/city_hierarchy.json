@@ -2520,13 +2520,13 @@
         ]
     },
     "Wah Cantt": {
-        "Islamabad - B - 17": [
+        "B-17": [
             "Sector B-17",
             "b[ -]?17",
             "b[ -]?17/\\d+",
             "\\[b\\][ -]?17/\\d+"
         ],
-        "Islamabad - D - 17": [
+        "D-17": [
             "Sarai Kharbuza",
             "Sector D-17",
             "d[ -]?17",
@@ -2585,6 +2585,38 @@
             "Iqbal Road",
             "Barrier No 3",
             "Post Office Road"
+        ],
+        "Wah": [
+            "25 Area",
+            "Asif Abad",
+            "Benazir Colony",
+            "Bhabra",
+            "Cashmer Town",
+            "Dhoke Barda",
+            "Ghazi Pur Colony",
+            "Ghouri Town",
+            "Gulshan-e-Anwar",
+            "Iqbal Town",
+            "J - Lane",
+            "K - Lane",
+            "Malikabad",
+            "Mohabatabad",
+            "Nawababad",
+            "New City Phase 2",
+            "Phase 4",
+            "Sadat Colony",
+            "Sector 20",
+            "Sector 21 - E",
+            "Sector 21 - F",
+            "Sector 22 - F",
+            "Sector 22 - G",
+            "Sector 23 - G",
+            "Shah Wali Colony",
+            "Tameer-e-Hayat Colony",
+            "Wah Model Town",
+            "Phase 3",
+            "Dhok Kokara",
+            "Gattia Road"
         ]
     },
     "Islamabad": {
@@ -2599,6 +2631,7 @@
             "Media Town"
         ],
         "B-17": [
+            "Multigardens",
             "\\b[bB][ -]?17\\b",
             "\\b[bB][ -]?17/\\d+\\b",
             "\\b\\[b\\][ -]?17/\\d+\\b"
@@ -3030,6 +3063,14 @@
         "Islamabad - DHA": [
             "DHA",
             "Defence Housing Society"
+        ],
+        "Islamabad - DHA Phase 1":[
+            "DHA Phase 1",
+            "Defence Housing Authority Phase 1"
+        ],
+        "Islamabad - DHA Phase 2":[
+            "DHA Phase 2",
+            "Defence Housing Authority Phase 2"
         ],
         "Islamabad - H -13": [
             "Ali Bakhish Town",
@@ -8450,17 +8491,17 @@
             "Satellite Town Block D"
         ],
         "Rawalpindi - Soan Garden": [
-            "Block A",
-            "Block B",
-            "Block C",
-            "Block D",
-            "Block E",
-            "Block F",
-            "Block G",
-            "Block H",
-            "Phase 2",
+            "Soan Garden Block A",
+            "Soan Garden Block B",
+            "Soan Garden Block C",
+            "Soan Garden Block D",
+            "Soan Garden Block E",
+            "Soan Garden Block F",
+            "Soan Garden Block G",
+            "Soan Garden Block H",
             "Soan Garden",
-            "River Garden"
+            "River Garden",
+            "Sawan"
         ],
         "Rawalpindi - Rawat": [
             "Kohsar Market",
@@ -8571,17 +8612,14 @@
             "Tufail Road"
         ],
         "Rawalpindi - CBR Town": [
-            "CBR Town Block B To D"
+            "CBR Town",
+            "CBR Town Block B",
+            "CBR Town Block C",
+            "CBR Town Block D"
         ],
         "Rawalpindi - Gulraiz": [
             "Rasool Town",
-            "Phase 5",
-            "Commerical",
-            "Phase 6",
-            "Phase 3",
-            "Phase 4",
-            "Phase 1",
-            "Phase 2"
+            "Gulraiz Housing Scheme"
         ],
         "Rawalpindi - Saddar": [
             "Sir Syed Road",
